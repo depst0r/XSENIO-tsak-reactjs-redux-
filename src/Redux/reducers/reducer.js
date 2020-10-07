@@ -1,19 +1,14 @@
 const initialState = {
-    companyName: '',
-    latestPrice: '',
-    latestTime: '',
-
+    companyName: [],
 }
 
 export const getChares = (state = initialState, action) => {
     switch (action.type) {
-        case 'test':
-            console.log('test', action)
+        case 'company':
+            console.log('company', action.data)
             return {
                 ...state,
-                companyName: action.data.companyName,
-                latestPrice: action.data.latestPrice,
-                latestTime: action.data.latestTime,
+                companyName: action.data
             }
         default:
             return state

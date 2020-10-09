@@ -1,6 +1,5 @@
 const initialState = {
-    company: [],
-    quote: []
+    company: []
 }
 
 export const getChares = (state = initialState, action) => {
@@ -10,12 +9,6 @@ export const getChares = (state = initialState, action) => {
             return {
                 ...state,
                 company: action.data
-            }
-        case 'quote':
-            console.log('quote', action.data)
-            return {
-                ...state,
-                quote: action.data
             }
         default:
             return state

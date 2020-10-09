@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchCompany } from '../../Redux/actions/actions';
-import { __apiKey, __apiBasuUrl } from '../../__apis/__apis';
-import './company.css';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchCompany } from '../../Redux/actions/actions'
+import { __apiKey, __apiBasuUrl } from '../../__apis/__apis'
+import styles from './page.module.scss'
+
 
 class CompanyList extends Component {
 
@@ -19,46 +12,31 @@ class CompanyList extends Component {
     }
 
     render() {
-
-
-
-
         const companyInfo = this.props.company.map((res, i) => {
             return (
-                <div className='item'>
-                    <div className='name'>
-                        <TableCell key={i} align="right">{res.companyName}</TableCell>
-
-                    </div>
-                </div>
+                <>
+                    <tr>
+                        <td>{res.companyName} </td>
+                        <td>{res.change} </td>
+                        <td>{res.latestPrice} </td>
+                    </tr>
+                </>
             )
-        });
+        })
+
         return (
-
             <>
-                <TableContainer component={Paper}>
-                    <Table aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-
-                                <TableCell align="right">company</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-
-                            <TableRow>
-                                {companyInfo}
-                            </TableRow>
-
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <div className='container'>
-                    <div className='users'>
-                        <h1>Company</h1>
-                        {companyInfo}
-                    </div>
-
+                <div>
+                    <table className={styles.table_dark}>
+                        <tbody>
+                            <tr>
+                                <th>Company</th>
+                                <th>Change</th>
+                                <th>LatestPrice</th>
+                            </tr>
+                            {companyInfo}
+                        </tbody>
+                    </table>
                 </div>
             </>
         );
@@ -69,4 +47,4 @@ export default connect(state => (
         company: state.getChares.company,
 
     }
-), { fetchCompany })(CompanyList);
+), { fetchCompany })(CompanyList)
